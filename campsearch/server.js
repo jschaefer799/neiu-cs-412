@@ -15,31 +15,14 @@ let app = http.createServer((request, response) => {
     if (!route)
         route = '.' + request.url
     let contentType = mime.lookup(route)
-    //let filePath = '.' + request.url
-    //if (filePath === './')
-        //filePath = './public/views/index.html'
 
     if (fs.existsSync(route)) {
         fs.readFile(route, function (error, content) {
             if (error) {
                 response.writeHead(500)
                 response.end()
-            } else {
-
-
-                /*
-                let contentType = ''
-                if (path.extname(route) === '.html')
-                    contentType = 'text/html'
-                else if (path.extname(route) === '.jpg') {
-                    contentType = 'image/jpeg'
-                } else if (path.extname(route) === '.css') {
-                    contentType = 'text/css'
-                } else if (path.extname(route) === '.js') {
-                    contentType = 'text/javascript'
-                }
-                */
-
+            }
+            else {
                 response.writeHead(200, {'Content-Type': contentType})
                 response.end(content, 'utf-8')
             }
