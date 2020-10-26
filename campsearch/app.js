@@ -5,8 +5,13 @@ const cookieParser = require('cookie-parser')
 const http = require('http')
 const hbs = require('express-handlebars') //allows us to use handlebars
 
+const InMemoryReviewsStore = require('./models/reviews-memory').InMemoryReviewsStore
+let reviewsStore = new InMemoryReviewsStore()
+exports.reviewsStore = reviewsStore
+
 const appsupport = require('./appsupport')
 const indexRouter = require('./routes/index')
+const reviewsRouter = require('./routes/reviews')
 
 
 const app = express()
@@ -17,7 +22,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs'); //'hbs' signals to use handlebars
 app.engine('hbs', hbs({
   extname: 'hbs',
-  defaultLayout: 'layout',
+  defaultLayout: 'default',
   layoutsDir: __dirname + '/views/layouts/',
   partialsDir: __dirname + '/views/partials/'
 }))
@@ -30,6 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 //Router function lists - these must be coded prior to Error Handlers
 app.use('/', indexRouter)
+app.use('/reviews', reviewsRouter)
 
 //Error handlers - these must come after Router function lists
 app.use(appsupport.basicErrorHandler)

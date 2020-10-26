@@ -1,0 +1,11 @@
+<title>{{title}}</title>
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<link rel='stylesheet' href='/stylesheets/style02.css' />
+
+<div class="center">
+<ul>
+    {{#each reviewList}}
+        <li>{{ key }}: <a href="/reviews/view?key={{ key }}">{{ title }}</a></li>
+    {{/each}}
+</ul>
+</div>

@@ -1,0 +1,16 @@
+<title>{{title}}</title>
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<link rel='stylesheet' href='/stylesheets/style02.css' />
+
+<form method="post" action="/reviews/save" class="center">
+    <input type="hidden" name="saveMethod" value="{{#if isCreate}}create{{else}}update{{/if}}"/>
+    <p>
+        Key: {{ reviewKey }}
+        <input type="hidden" name="reviewKey" value="{{ reviewKey}}"/>
+    </p>
+    <p>
+        Title: <input type="text" name="title"/><br/>
+    </p>
+    <textarea rows=5 cols=40 name="body"></textarea><br/>
+    <input type="submit" value="Submit"/>
+</form>

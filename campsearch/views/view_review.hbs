@@ -1,0 +1,15 @@
+<title>{{title}}</title>
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<link rel='stylesheet' href='/stylesheets/style02.css' />
+
+<div class="center">
+<h3>{{ reviewTitle}}</h3>
+<p>{{ reviewBody}}</p>
+<p>Key: {{ reviewKey }}</p>
+<hr/>
+<p>
+
+    <span><a href="/reviews/delete?key={{ reviewKey }}">Delete Review</a></span>
+    <span><a href="/reviews/edit?key={{ reviewKey }}">Edit Review</a></span>
+</p>
+</div>
