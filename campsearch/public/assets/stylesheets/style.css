@@ -1,0 +1,22 @@
+body {
+  font: 14px Lato, Helvetica, Arial, sans-serif;
+  background-color: whitesmoke;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.navbar-text{
+  font-size: x-large;
+}
+
+.navbar-toggler{
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+#buttons{
+  background-color: darkorange;
+  border: none;
+}

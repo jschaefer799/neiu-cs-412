@@ -6,7 +6,8 @@ router.get('/', async function(req, res, next) {
   const options ={
     'title': 'CAMP Search Web App',
     'name': 'CAMP Search',
-    'styles': ['stylesheets/style.css', 'stylesheets/style02.css']
+    'styles': ['stylesheets/style.css', 'stylesheets/style02.css'],
+    'isHomeActive': 'active'
   }
   res.render('index', options);
 

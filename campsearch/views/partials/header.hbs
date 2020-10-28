@@ -1,8 +1,22 @@
 <header>
-    <h1>{{name}}</h1>
-    <div class="navbar">
-        <p>
-            <a href="/">Home</a> | <a href="/reviews/add">Add Review</a> | <a href="/reviews/viewAll">View All</a>
-        </p>
-    </div>
+    <!--<nav class="nav nav-pills justify-content-center">
+        <a class="nav-item nav-link {{isHomeActive}}" href="/">Home</a>
+        <a class="nav-item nav-link {{isAddActive}}" href="/reviews/add">Add Review</a>
+        <a class="nav-item nav-link {{isViewAllActive}}" href="/reviews/viewAll">View All</a>
+    </nav>-->
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark border">
+        <a class="navbar-brand" href="/"><i data-feather="home"></i></a>
+        <button class="navbar-toggler" type="button"
+        data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle Navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <span class="navbar-text col text-left">{{name}}</span>
+            <a class="nav-item nav-link btn btn-light col-auto ml-2 mr-2 mb-2" href="/reviews/add">Add Review</a>
+            <a class="nav-item nav-link btn btn-light col-auto ml-2 mr-2 mb-2" href="/reviews/viewAll">All Reviews</a>
+        </div>
+    </nav>
 </header>

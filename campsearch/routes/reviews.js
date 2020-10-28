@@ -8,7 +8,8 @@ router.get('/add', async (req, res, next) =>{
             isCreate: true,
             title: 'Camp Search Web App',
             name: 'Add Review',
-            reviewKey: await reviewsStore.count()
+            reviewKey: await reviewsStore.count(),
+            isAddActive: 'active'
         })
     }
     catch(err){
@@ -74,7 +75,7 @@ router.get('/viewAll', async (req, res, next)=>{
             title: "Camp Search Web App",
             name: 'View All Reviews',
             reviewList: extractReviewsToLiteral(allReviews),
-
+            isViewAllActive: 'active'
         })
     }
     catch (err){
