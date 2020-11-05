@@ -7,6 +7,7 @@
     "start-watch": "nodemon ./app.js"
   },
   "dependencies": {
+    "@advanced-rest-client/star-rating": "^1.2.0",
     "bootstrap": "^4.5.3",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
@@ -16,6 +17,8 @@
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
     "jquery": "^3.5.1",
+    "mdbootstrap": "^4.19.1",
+    "mongoose": "^5.10.11",
     "morgan": "~1.9.1",
     "popper.js": "^1.16.1"
   },

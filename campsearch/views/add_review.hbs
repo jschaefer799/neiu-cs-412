@@ -3,7 +3,12 @@
         <input type="hidden" name="saveMethod" value="{{#if isCreate}}create{{else}}update{{/if}}"/>
         <div class="form-group row justify-content-center">
             <input type="hidden" name="reviewKey" value="{{ reviewKey}}"/>
+            <input type="hidden" name="reviewDate" value="{{reviewDate}}"/>
         </div>
+        <label id="ratingLabel">My rating</label>
+        <star-rating value="0" arial-labelledby="ratingLabel"></star-rating>
+        <input type="hidden" id="starRating" name="reviewRating"/>
+
         <div class="form-group row justify-content-center">
             <div class="col-1 text-left font-weight-bold">
                 <label class="col-form-label" for="title">Title: </label>

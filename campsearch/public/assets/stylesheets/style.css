@@ -20,3 +20,32 @@ a {
   background-color: darkorange;
   border: none;
 }
+.checked {
+  color : yellow;
+  font-size : 20px;
+}
+.unchecked {
+  font-size : 20px;
+}
+.image-container{
+  position: relative;
+  text-align: center;
+  color: white;
+  max-width: 100%;
+  height: auto;
+}
+.image-text{
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  font-family: Georgia, serif;
+  max-width: 100%;
+  height: auto;
+}
+#front-img{
+  font-family: "Courier New", serif;
+}
+#box{
+  background: rgba(64,64,64,0.5);
+}

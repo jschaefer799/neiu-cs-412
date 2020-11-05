@@ -4,13 +4,18 @@ let reviewsStore = require('../app').reviewsStore
 
 router.get('/add', async (req, res, next) =>{
     try{
+        let currentDate = new Date()
+
         res.render('add_review',{
             isCreate: true,
             title: 'Camp Search Web App',
             name: 'Add Review',
             reviewKey: await reviewsStore.count(),
-            isAddActive: 'active'
+            reviewDate: currentDate.getMonth()+1 + '/' + currentDate.getDate() + '/' + currentDate.getFullYear(),
+            isAddActive: 'active',
+            layout: 'star_rating'
         })
+
     }
     catch(err){
         next(err)
@@ -21,9 +26,9 @@ router.post('/save', async(req, res, next) =>{
     try{
         let review
         if (req.body.saveMethod === 'create')
-            review = await reviewsStore.create(req.body.reviewKey, req.body.title, req.body.body)
+            review = await reviewsStore.create(req.body.reviewKey, req.body.reviewDate, req.body.reviewRating, req.body.title, req.body.body)
         else
-            review = await reviewsStore.update(req.body.reviewKey, req.body.title, req.body.body)
+            review = await reviewsStore.update(req.body.reviewKey, req.body.reviewDate, req.body.reviewRating, req.body.title, req.body.body)
         res.redirect('/reviews/view?key=' + req.body.reviewKey)
     }
     catch (err){
@@ -37,9 +42,11 @@ router.get('/view', async (req, res, next) =>{
         res.render('view_review',{
             title: "Camp Search Web App",
             name: 'View Review',
+            reviewDate: review.date,
             reviewTitle: review.title,
             reviewKey: review.key,
-            reviewBody: review.body
+            reviewBody: review.body,
+            reviewRating: review.rating
         })
     }
         catch (err){
@@ -56,7 +63,10 @@ router.get('/edit', async (req, res, next) =>{
             name: 'Edit Review',
             reviewTitle: review.title,
             reviewKey: review.key,
-            reviewBody: review.body
+            reviewBody: review.body,
+            reviewDate: review.date,
+            reviewRating: review.rating,
+            layout: 'star_rating'
         })
     }
     catch (err){
@@ -66,15 +76,12 @@ router.get('/edit', async (req, res, next) =>{
 
 router.get('/viewAll', async (req, res, next)=>{
     try{
-        let keyList = await reviewsStore.keyList()
-        let keyPromises = keyList.map(key =>{
-            return reviewsStore.read(key)
-        })
-        let allReviews = await Promise.all(keyPromises)
+        let allReviews = await reviewsStore.findAllReviews()
+
         res.render('view_all',{
             title: "Camp Search Web App",
             name: 'View All Reviews',
-            reviewList: extractReviewsToLiteral(allReviews),
+            reviewList: allReviews,
             isViewAllActive: 'active'
         })
     }
@@ -84,10 +91,6 @@ router.get('/viewAll', async (req, res, next)=>{
 })
 router.get('/delete', async (req, res, next) =>{
     try{
-        res.render('delete_review',{
-            title: "Camp Search Web App",
-            name: 'Delete Review',
-        })
         let review = await reviewsStore.destroy(req.query.key)
         res.redirect('/reviews/viewAll')
     }
@@ -96,14 +99,7 @@ router.get('/delete', async (req, res, next) =>{
     }
 })
 
-function extractReviewsToLiteral(allReviews){
-    return allReviews.map(review =>{
-        return{
-            key: review.key,
-            title: review.title
-        }
-    })
-}
+
 
 
 

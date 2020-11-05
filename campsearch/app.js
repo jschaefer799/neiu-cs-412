@@ -5,8 +5,8 @@ const cookieParser = require('cookie-parser')
 const http = require('http')
 const hbs = require('express-handlebars') //allows us to use handlebars
 
-const InMemoryReviewsStore = require('./models/reviews-memory').InMemoryReviewsStore
-let reviewsStore = new InMemoryReviewsStore()
+const MongooseReviewsStore = require('./models/reviews-mongoose').MongooseReviewsStore
+let reviewsStore = new MongooseReviewsStore()
 exports.reviewsStore = reviewsStore
 
 const appsupport = require('./appsupport')
@@ -36,6 +36,8 @@ app.use('/assets/vendor/bootstrap', express.static(path.join(__dirname, 'node_mo
 app.use('/assets/vendor/jquery', express.static(path.join(__dirname, 'node_modules', 'jquery', 'dist')))
 app.use('/assets/vendor/popper.js', express.static(path.join(__dirname, 'node_modules', 'popper.js', 'dist', 'umd')))
 app.use('/assets/vendor/feather-icons', express.static(path.join(__dirname, 'node_modules', 'feather-icons', 'dist')))
+app.use('/assets/vendor/@advanced-rest-client', express.static(path.join(__dirname, 'node_modules', '@advanced-rest-client','star-rating')))
+
 //Router function lists - these must be coded prior to Error Handlers
 app.use('/', indexRouter)
 app.use('/reviews', reviewsRouter)

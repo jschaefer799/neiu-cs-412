@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {{>head}}
+</head>
+<body>
+{{>header}}
+{{{body}}}
+
+</body>
+{{>imports}}
+<script type="text/javascript">
+    $(window).bind('load', function() {
+        document.querySelector('star-rating').onchange = (e) => {
+            document.getElementById('starRating').value = e.target.value
+            alert(document.getElementById('starRating').value)
+            console.log(`New rating is ${e.target.value}`)
+        }
+
+
+    })
+</script>
+
+</html>
