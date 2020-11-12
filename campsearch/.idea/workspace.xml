@@ -23,26 +23,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64c2bbe5-d6b0-45b8-9ee3-0687464613fd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/models/reviews-mongoose.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/layouts/star_rating.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/partials/head.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/partials/imports.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/reviews-controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/user-controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/user.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/users.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/partials/user_messages.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/users/login.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/users/register.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/reviews-memory.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/reviews-memory.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/reviews.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/reviews.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/reviews-memory.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/reviews-mongoose.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/stylesheets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/stylesheets/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/stylesheets/style02.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/stylesheets/style02.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/reviews.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/reviews.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/add_review.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/add_review.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/edit_review.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/edit_review.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/add_review.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/reviews/add_review.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/edit_review.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/reviews/edit_review.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/index.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/layouts/default.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/layouts/default.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/partials/header.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/header.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/view_all.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/view_all.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/view_review.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/view_review.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/view_all.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/reviews/view_all.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/view_review.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/reviews/view_review.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +76,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/controllers" />
+      <recent name="$PROJECT_DIR$/views/reviews" />
       <recent name="$PROJECT_DIR$/public/assets" />
       <recent name="$PROJECT_DIR$/views" />
     </key>
@@ -96,6 +98,7 @@
       <node-interpreter value="project" />
       <envs>
         <env name="DB_URL" value="mongodb+srv://admin:fwqwUpFLs4lUlr2Q@camp-search-cluster.rf7pe.mongodb.net/camp-search?retryWrites=true&amp;w=majority" />
+        <env name="PASSCODE" value="fallnights79" />
       </envs>
       <method v="2" />
     </configuration>
@@ -125,6 +128,10 @@
       <workItem from="1604429265035" duration="4320000" />
       <workItem from="1604508844045" duration="4291000" />
       <workItem from="1604534235392" duration="2645000" />
+      <workItem from="1604967594802" duration="77000" />
+      <workItem from="1604974778240" duration="6186000" />
+      <workItem from="1605112256212" duration="6308000" />
+      <workItem from="1605135831869" duration="9055000" />
     </task>
     <servers />
   </component>
@@ -144,46 +151,58 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="811" y="83" width="1071" height="724" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604238169438">
+    <state x="811" y="83" width="1071" height="724" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605151448409">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
-    <state x="811" y="83" width="1071" height="724" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1920.977@0.23.1920.977" timestamp="1604238169438" />
-    <state x="1185" y="320" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603423501902">
+    <state x="811" y="83" width="1071" height="724" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1920.977@0.23.1920.977" timestamp="1605151448409" />
+    <state x="1185" y="320" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1605113779722">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
-    <state x="1185" y="320" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1920.977@0.23.1920.977" timestamp="1603423501902" />
+    <state x="1185" y="320" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1920.977@0.23.1920.977" timestamp="1605113779722" />
+    <state x="1102" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605147535499">
+      <screen x="0" y="23" width="1920" height="978" />
+    </state>
+    <state x="1102" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1920.978@0.23.1920.978" timestamp="1605147535499" />
     <state x="1214" y="381" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1603853474647">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
     <state x="1214" y="381" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.1920.977@0.23.1920.977" timestamp="1603853474647" />
-    <state width="1899" height="329" key="GridCell.Tab.0.bottom" timestamp="1604545742066">
+    <state x="1206" y="182" key="EnvironmentVariablesDialog" timestamp="1604982332774">
+      <screen x="0" y="23" width="1920" height="977" />
+    </state>
+    <state x="1206" y="182" key="EnvironmentVariablesDialog/0.23.1920.977@0.23.1920.977" timestamp="1604982332774" />
+    <state width="1086" height="379" key="GridCell.Tab.0.bottom" timestamp="1605151557456">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
     <state width="1419" height="256" key="GridCell.Tab.0.bottom/0.23.1440.804@0.23.1440.804" timestamp="1604528678880" />
     <state width="957" height="260" key="GridCell.Tab.0.bottom/0.23.1440.806@0.23.1440.806" timestamp="1604524657862" />
     <state width="1419" height="262" key="GridCell.Tab.0.bottom/0.23.1440.808@0.23.1440.808" timestamp="1604340946362" />
-    <state width="1899" height="329" key="GridCell.Tab.0.bottom/0.23.1920.977@0.23.1920.977" timestamp="1604545742066" />
-    <state width="1899" height="329" key="GridCell.Tab.0.center" timestamp="1604545742066">
+    <state width="1086" height="379" key="GridCell.Tab.0.bottom/0.23.1920.977@0.23.1920.977" timestamp="1605151557456" />
+    <state width="1086" height="379" key="GridCell.Tab.0.bottom/0.23.1920.978@0.23.1920.978" timestamp="1605150365910" />
+    <state width="1086" height="379" key="GridCell.Tab.0.center" timestamp="1605151557455">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
     <state width="1419" height="256" key="GridCell.Tab.0.center/0.23.1440.804@0.23.1440.804" timestamp="1604528678880" />
     <state width="957" height="260" key="GridCell.Tab.0.center/0.23.1440.806@0.23.1440.806" timestamp="1604524657861" />
     <state width="1419" height="262" key="GridCell.Tab.0.center/0.23.1440.808@0.23.1440.808" timestamp="1604340946360" />
-    <state width="1899" height="329" key="GridCell.Tab.0.center/0.23.1920.977@0.23.1920.977" timestamp="1604545742066" />
-    <state width="1899" height="329" key="GridCell.Tab.0.left" timestamp="1604545742065">
+    <state width="1086" height="379" key="GridCell.Tab.0.center/0.23.1920.977@0.23.1920.977" timestamp="1605151557455" />
+    <state width="1086" height="379" key="GridCell.Tab.0.center/0.23.1920.978@0.23.1920.978" timestamp="1605150365909" />
+    <state width="1086" height="379" key="GridCell.Tab.0.left" timestamp="1605151557455">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
     <state width="1419" height="256" key="GridCell.Tab.0.left/0.23.1440.804@0.23.1440.804" timestamp="1604528678879" />
     <state width="957" height="260" key="GridCell.Tab.0.left/0.23.1440.806@0.23.1440.806" timestamp="1604524657860" />
     <state width="1419" height="262" key="GridCell.Tab.0.left/0.23.1440.808@0.23.1440.808" timestamp="1604340946360" />
-    <state width="1899" height="329" key="GridCell.Tab.0.left/0.23.1920.977@0.23.1920.977" timestamp="1604545742065" />
-    <state width="1899" height="329" key="GridCell.Tab.0.right" timestamp="1604545742066">
+    <state width="1086" height="379" key="GridCell.Tab.0.left/0.23.1920.977@0.23.1920.977" timestamp="1605151557455" />
+    <state width="1086" height="379" key="GridCell.Tab.0.left/0.23.1920.978@0.23.1920.978" timestamp="1605150365909" />
+    <state width="1086" height="379" key="GridCell.Tab.0.right" timestamp="1605151557456">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
     <state width="1419" height="256" key="GridCell.Tab.0.right/0.23.1440.804@0.23.1440.804" timestamp="1604528678880" />
     <state width="957" height="260" key="GridCell.Tab.0.right/0.23.1440.806@0.23.1440.806" timestamp="1604524657861" />
     <state width="1419" height="262" key="GridCell.Tab.0.right/0.23.1440.808@0.23.1440.808" timestamp="1604340946361" />
-    <state width="1899" height="329" key="GridCell.Tab.0.right/0.23.1920.977@0.23.1920.977" timestamp="1604545742066" />
+    <state width="1086" height="379" key="GridCell.Tab.0.right/0.23.1920.977@0.23.1920.977" timestamp="1605151557456" />
+    <state width="1086" height="379" key="GridCell.Tab.0.right/0.23.1920.978@0.23.1920.978" timestamp="1605150365910" />
     <state width="1419" height="256" key="GridCell.Tab.1.bottom" timestamp="1604528678882">
       <screen x="0" y="23" width="1440" height="804" />
     </state>
@@ -236,13 +255,19 @@
       <screen x="0" y="23" width="1920" height="977" />
     </state>
     <state x="687" y="132" key="SettingsEditor/0.23.1920.977@0.23.1920.977" timestamp="1603418064402" />
-    <state x="1042" y="123" width="778" height="777" key="dock-window-1" timestamp="1604433629199">
+    <state x="995" y="259" width="852" height="958" key="dock-window-1" timestamp="1605150980415">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
-    <state x="1042" y="123" width="778" height="777" key="dock-window-1/0.23.1920.977@0.23.1920.977" timestamp="1604433629199" />
-    <state x="1119" y="238" width="670" height="676" key="search.everywhere.popup" timestamp="1604433495569">
+    <state x="995" y="259" width="852" height="958" key="dock-window-1/0.23.1920.977@0.23.1920.977" timestamp="1605150980415" />
+    <state x="8" y="23" width="852" height="958" key="dock-window-1/0.23.1920.978@0.23.1920.978" timestamp="1605150108421" />
+    <state x="1139" y="236" key="run.anything.popup" timestamp="1605139957871">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1139" y="236" key="run.anything.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1605139957871" />
+    <state x="1139" y="236" key="run.anything.popup/0.23.1920.977@0.23.1920.977" timestamp="1605139907744" />
+    <state x="1119" y="238" width="670" height="676" key="search.everywhere.popup" timestamp="1605139402878">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
-    <state x="1119" y="238" width="670" height="676" key="search.everywhere.popup/0.23.1920.977@0.23.1920.977" timestamp="1604433495569" />
+    <state x="1119" y="238" width="670" height="676" key="search.everywhere.popup/0.23.1920.977@0.23.1920.977" timestamp="1605139402878" />
   </component>
 </project>

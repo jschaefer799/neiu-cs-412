@@ -1,16 +1,16 @@
 const express = require('express')
 const router = express.Router()
-let reviewsStore = require('../app').reviewsStore
+const { reviewsController } = require('../controllers/reviews-controller')
 
 router.get('/add', async (req, res, next) =>{
     try{
         let currentDate = new Date()
 
-        res.render('add_review',{
+        res.render('reviews/add_review',{
             isCreate: true,
             title: 'Camp Search Web App',
             name: 'Add Review',
-            reviewKey: await reviewsStore.count(),
+            reviewKey: await reviewsController.count(),
             reviewDate: currentDate.getMonth()+1 + '/' + currentDate.getDate() + '/' + currentDate.getFullYear(),
             isAddActive: 'active',
             layout: 'star_rating'
@@ -26,9 +26,9 @@ router.post('/save', async(req, res, next) =>{
     try{
         let review
         if (req.body.saveMethod === 'create')
-            review = await reviewsStore.create(req.body.reviewKey, req.body.reviewDate, req.body.reviewRating, req.body.title, req.body.body)
+            review = await reviewsController.create(req.body.reviewKey, req.body.reviewDate, req.body.reviewRating, req.body.title, req.body.body)
         else
-            review = await reviewsStore.update(req.body.reviewKey, req.body.reviewDate, req.body.reviewRating, req.body.title, req.body.body)
+            review = await reviewsController.update(req.body.reviewKey, req.body.reviewDate, req.body.reviewRating, req.body.title, req.body.body)
         res.redirect('/reviews/view?key=' + req.body.reviewKey)
     }
     catch (err){
@@ -38,8 +38,8 @@ router.post('/save', async(req, res, next) =>{
 
 router.get('/view', async (req, res, next) =>{
     try{
-        let review = await reviewsStore.read(req.query.key)
-        res.render('view_review',{
+        let review = await reviewsController.read(req.query.key)
+        res.render('reviews/view_review',{
             title: "Camp Search Web App",
             name: 'View Review',
             reviewDate: review.date,
@@ -56,8 +56,8 @@ router.get('/view', async (req, res, next) =>{
 
 router.get('/edit', async (req, res, next) =>{
     try{
-        let review = await reviewsStore.read(req.query.key)
-        res.render('edit_review',{
+        let review = await reviewsController.read(req.query.key)
+        res.render('reviews/edit_review',{
             isCreate: false,
             title: "Camp Search Web App",
             name: 'Edit Review',
@@ -76,9 +76,9 @@ router.get('/edit', async (req, res, next) =>{
 
 router.get('/viewAll', async (req, res, next)=>{
     try{
-        let allReviews = await reviewsStore.findAllReviews()
+        let allReviews = await reviewsController.findAllReviews()
 
-        res.render('view_all',{
+        res.render('reviews/view_all',{
             title: "Camp Search Web App",
             name: 'View All Reviews',
             reviewList: allReviews,
@@ -91,7 +91,7 @@ router.get('/viewAll', async (req, res, next)=>{
 })
 router.get('/delete', async (req, res, next) =>{
     try{
-        let review = await reviewsStore.destroy(req.query.key)
+        let review = await reviewsController.destroy(req.query.key)
         res.redirect('/reviews/viewAll')
     }
     catch (err){
