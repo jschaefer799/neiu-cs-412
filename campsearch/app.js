@@ -7,7 +7,37 @@ const session = require('express-session')
 const MemoryStore = require('memorystore')(session)
 const connectFlash = require('connect-flash')
 const mongoose = require('mongoose')
+const passport = require('passport')
+const { User } = require('./models/user')
 
+//code for importing campsite data to MongoDB
+// const csvtojson = require("csvtojson")
+// const mongodb = require("mongodb").MongoClient
+//
+// csvtojson()
+//     .fromFile("michigan_state_park_campgrounds.csv")
+//     .then(csvData =>{
+//       console.log(csvData)
+//
+//
+//       mongodb.connect(
+//           process.env.DB_URL,
+//           {useNewUrlParser: true, useUnifiedTopology: true},
+//           (err, client) => {
+//             if (err) throw err
+//
+//             client
+//                 .db("camp-search")
+//                 .collection("campsites")
+//                 .insertMany(csvData, (err, res) =>{
+//                   if(err) throw err
+//
+//                   console.log(`Inserted: ${res.insertedCount} rows`)
+//                   client.close()
+//                 })
+//           }
+//       )
+//     })
 mongoose.connect(process.env.DB_URL,{
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -16,6 +46,7 @@ mongoose.connect(process.env.DB_URL,{
 ).catch (err => {
   console.log(err)
 })
+
 
 const appsupport = require('./appsupport')
 const indexRouter = require('./routes/index')
@@ -51,6 +82,12 @@ app.use(session({
 }))
 app.use(connectFlash())
 
+app.use(passport.initialize())
+app.use(passport.session())
+passport.use(User.createStrategy())
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
+
 app.use(express.static(path.join(__dirname, 'public')))
 app.use('/assets/vendor/bootstrap', express.static(path.join(__dirname, 'node_modules', 'bootstrap', 'dist')))
 app.use('/assets/vendor/jquery', express.static(path.join(__dirname, 'node_modules', 'jquery', 'dist')))
@@ -59,6 +96,8 @@ app.use('/assets/vendor/feather-icons', express.static(path.join(__dirname, 'nod
 app.use('/assets/vendor/@advanced-rest-client', express.static(path.join(__dirname, 'node_modules', '@advanced-rest-client','star-rating')))
 
 app.use((req,res,next)=>{
+  res.locals.loggedIn = req.isAuthenticated()
+  res.locals.currentUser = req.user ? req.user.toObject() : undefined
   res.locals.flashMessages = req.flash()
   next()
 })

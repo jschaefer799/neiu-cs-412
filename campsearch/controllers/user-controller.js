@@ -1,19 +1,6 @@
 let User = require('../models/user').User
 const {body, validationResult} = require ('express-validator')
-
-// const mongoose = require('mongoose')
-// const connectDB = async () => {
-//     try{
-//         await mongoose.connect(process.env.DB_URL,
-//             {
-//                 useNewUrlParser: true,
-//                 useUnifiedTopology: true,
-//                 useCreateIndex: true}
-//         )
-//     } catch(err){
-//         console.log(err)
-//     }
-// }
+const passport = require('passport')
 
 exports.userController={
     create: async (req, res, next) => {
@@ -24,32 +11,50 @@ exports.userController={
         }else {
             try {
                 let userParams = getUserParams(req.body)
-                let user = await User.create(userParams)
+                let newUser = new User(userParams)
+                let user = await User.register(newUser, req.body.password)
                 req.flash('success', `${user.fullName}'s account created successfully`)
                 res.redirect('/')
             } catch (error) {
                 console.log(`Error saving user: ${error.message}`)
-                req.flash('error', `Failed to create user account because ${error.message}`)
+                req.flash('error', `Failed to create user account. Invalid email.`)
                 res.redirect('/users/register')
             }
         }
     },
 
     authenticate: async (req, res, next) =>{
-        try{
-            let user = await User.findOne({email: req.body.email})
-            if (user && await user.passwordComparison(req.body.password)){
-                req.flash('success', `${user.fullName} logged in successfully!`)
-                res.redirect('/')
-            } else{
-                req.flash('error', 'Your email or password is incorrect. Please try aagin.')
-                res.redirect('/users/login')
+        await passport.authenticate('local', function(err, user, info){
+            if(err)
+                return next(err)
+            if(!user){
+                req.flash('error', 'Failed to login')
+                return res.redirect('/users/login')
             }
-        }catch(error){
-            req.flash('error', 'Your email or password is incorrect. Please try again')
+            req.logIn(user, function(err){
+                if(err)
+                    return next(err)
+                req.flash('success', `${user.fullName} logged in`)
+                return res.redirect('/')
+            })
+        })(req, res, next);
+
+    },
+
+    viewUserDetails: async (req, res, next) =>{
+        if (req.isAuthenticated()) {
+            try {
+                res.render('users/user_profile', {
+                    title: "Account Details",
+                })
+            } catch (err) {
+                next(err)
+            }
+        }
+        else{
+            req.flash('error', "Must be logged in to access profile")
             res.redirect('/users/login')
         }
-
     }
 }
 
@@ -63,6 +68,8 @@ const getUserParams = body => {
         password: body.password
     }
 }
+
+
 exports.registerValidations = [
     body('first')
         .notEmpty().withMessage('First name is required')

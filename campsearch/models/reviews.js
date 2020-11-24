@@ -1,19 +1,10 @@
-exports.AbstractReviewsStore = class AbstractReviewsStore{
-    async close() { }
-    async update (key, title, body){ }
-    async create (key, title, body) { }
-    async read (key) { }
-    async destroy (key) { }
-    async keyList () { }
-    async count () { }
-}
-
 const mongoose = require('mongoose')
+
 const ReviewSchema = new mongoose.Schema({
-    key: {
-        type: Number,
-        required: true,
-        unique: true
+    title: {
+        type: String,
+        required: [true, 'Title is required'],
+        minlength: [3, 'Minimum Title length is 3 characters']
     },
     date: {
         type: String,
@@ -23,15 +14,10 @@ const ReviewSchema = new mongoose.Schema({
         type: Number,
         require: true
     },
-    title: {
-        type: String,
-        required: [true, 'Title is required'],
-        minlength: [3, 'Minimum Title length is 3 characters']
-    },
     body: {
         type: String,
         required: [true, 'Note body is required']
     }
 })
-
+ReviewSchema.set('toObject',{getters: true, virtuals: true})
 exports.Review = mongoose.model('reviews', ReviewSchema)

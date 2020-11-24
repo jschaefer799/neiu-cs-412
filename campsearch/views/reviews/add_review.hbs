@@ -1,13 +1,13 @@
 <form method="post" action="/reviews/save" class="center">
     <div class="container-fluid">
-        <input type="hidden" name="saveMethod" value="{{#if isCreate}}create{{else}}update{{/if}}"/>
+        <input type="hidden" name="checkCreate" value="{{#if doCreate}}create{{else}}update{{/if}}"/>
         <div class="form-group row justify-content-center">
-            <input type="hidden" name="reviewKey" value="{{ reviewKey}}"/>
-            <input type="hidden" name="reviewDate" value="{{reviewDate}}"/>
+            <input type="hidden" name="reviewId" value="{{reviewId}}"/>
+            <input type="hidden" name="date" value="{{date}}"/>
         </div>
         <label id="ratingLabel">My rating</label>
         <star-rating value="0" arial-labelledby="ratingLabel"></star-rating>
-        <input type="hidden" id="starRating" name="reviewRating"/>
+        <input type="hidden" id="starRating" name="rating"/>
 
         <div class="form-group row justify-content-center">
             <div class="col-1 text-left font-weight-bold">

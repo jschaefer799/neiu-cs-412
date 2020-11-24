@@ -20,7 +20,7 @@
 <hr/>
     <div class="row row-cols-8 justify-content-center">
         <a id="buttons" class="btn btn-primary m-2" data-toggle="modal" data-target="#exampleModal">Delete Review</a>
-        <a id="buttons" class="btn btn-primary m-2" href="/reviews/edit?key={{ reviewKey }}">Edit Review</a>
+        <a id="buttons" class="btn btn-primary m-2" href="/reviews/edit?id={{ reviewId }}">Edit Review</a>
     </div>
     <div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm" role="document">
@@ -36,7 +36,7 @@
                 </div>
                 <div class="modal-footer">
                     <a type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</a>
-                    <a type="button" class="btn btn-primary" href="/reviews/delete?key={{ reviewKey }}">Delete</a>
+                    <a type="button" class="btn btn-primary" href="/reviews/delete?id={{ reviewId }}">Delete</a>
                 </div>
             </div>
 
