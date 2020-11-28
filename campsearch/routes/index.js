@@ -7,7 +7,9 @@ router.get('/', async function(req, res, next) {
     'title': 'CAMP Search Web App',
     'name': 'CAMP Search',
     'styles': ['stylesheets/style.css', 'stylesheets/style02.css'],
-    'isHomeActive': 'active'
+    'isHomeActive': 'active',
+    layout: 'no_title'
+
   }
   res.render('index', options);
 

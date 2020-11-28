@@ -1,10 +1,4 @@
 <header>
-    <!--<nav class="nav nav-pills justify-content-center">
-        <a class="nav-item nav-link {{isHomeActive}}" href="/">Home</a>
-        <a class="nav-item nav-link {{isAddActive}}" href="/reviews/add">Add Review</a>
-        <a class="nav-item nav-link {{isViewAllActive}}" href="/reviews/viewAll">View All</a>
-    </nav>-->
-
     <nav class="navbar navbar-expand-sm navbar-light bg-light border">
         <a class="navbar-brand" href="/"><img src="/assets/images/logo-01.png" width="150" height="70" class="img-fluid" alt="CAMP Search logo"></a>
         <button class="navbar-toggler" type="button"
@@ -14,18 +8,16 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <span class="navbar-text col text-left">{{name}}</span>
+            <span class="navbar-text col text-left"></span>
             {{#unless loggedIn}}
-                <a class="nav-item nav-link btn btn-dark col-auto ml-2 mr-2 mb-2" href="/users/register">Register</a>
-                <a class="nav-item nav-link btn btn-dark col-auto ml-2 mr-2 mb-2" href="/users/login">Login</a>
+                <a class="nav-item nav-link btn btn-dark col-auto ml-2 mr-2 mb-2" href="/reviews/topReviews">Top Reviews</a>
+                <a class="nav-item nav-link btn btn-dark col-auto ml-2 mr-2 mb-2" href="/users/login"><i id="user-icon" data-feather="user"></i>Sign In</a>
             {{else}}
                 <a class="nav-item nav-link btn btn-dark col-auto ml-2 mr-2 mb-2" href="/reviews/add">Add Review</a>
                 <a class="nav-item nav-link btn btn-dark col-auto ml-2 mr-2 mb-2" href="/reviews/viewAll">All Reviews</a>
                 <a class="nav-item nav-link btn btn-dark col-auto ml-2 mr-2 mb-2" href="/users/userProfile">Account Details</a>
                 <a class="nav-item nav-link btn btn-dark col-auto ml-2 mr-2 mb-2" href="/users/logout">Logout</a>
-                <span class="col-auto text-white">{{currentUser.fullName}}</span>
             {{/unless}}
-
         </div>
     </nav>
 </header>

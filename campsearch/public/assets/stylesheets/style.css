@@ -49,3 +49,84 @@ a {
 #box{
   background: rgba(64,64,64,0.5);
 }
+
+#footer-nav{
+  color: white;
+  font-size:12px;
+}
+#footer-nav:hover{
+  text-decoration: none;
+  color:orange;
+}
+
+#copyright{
+  font-size:11px;
+}
+
+#footer-box{
+  background-color: #343a40;
+}
+
+#home-page-card{
+  border-radius: 0;
+}
+h1{
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 100%;
+}
+img{
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;"
+}
+
+.navbar{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+ul{
+  list-style-type: none;
+}
+
+.center{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+#search-bar{
+  font: 14px Lato, Helvetica, Arial, sans-serif;
+}
+
+#search-icon-box{
+  background-color:#cc5500;
+  border: none;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+#search-icon-box:hover{
+  background: #b34a00;
+}
+
+#search-icon{
+  color:white;
+}
+
+#user-icon{
+  margin-right:5px;
+  justify-content: center;
+}
+
+#sign-in-card{
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}

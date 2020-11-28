@@ -2,13 +2,13 @@ let User = require('../models/user').User
 const {body, validationResult} = require ('express-validator')
 const passport = require('passport')
 
-exports.userController={
+exports.userController= {
     create: async (req, res, next) => {
         const errors = validationResult(req)
-        if (!errors.isEmpty()){
-            req.flash('error', errors.array().map(e => e.msg +'</br>').join(''))
+        if (!errors.isEmpty()) {
+            req.flash('error', errors.array().map(e => e.msg + '</br>').join(''))
             res.redirect('/users/register')
-        }else {
+        } else {
             try {
                 let userParams = getUserParams(req.body)
                 let newUser = new User(userParams)
@@ -23,16 +23,16 @@ exports.userController={
         }
     },
 
-    authenticate: async (req, res, next) =>{
-        await passport.authenticate('local', function(err, user, info){
-            if(err)
+    authenticate: async (req, res, next) => {
+        await passport.authenticate('local', function (err, user, info) {
+            if (err)
                 return next(err)
-            if(!user){
+            if (!user) {
                 req.flash('error', 'Failed to login')
                 return res.redirect('/users/login')
             }
-            req.logIn(user, function(err){
-                if(err)
+            req.logIn(user, function (err) {
+                if (err)
                     return next(err)
                 req.flash('success', `${user.fullName} logged in`)
                 return res.redirect('/')
@@ -41,23 +41,89 @@ exports.userController={
 
     },
 
-    viewUserDetails: async (req, res, next) =>{
+    viewUserDetails: async (req, res, next) => {
         if (req.isAuthenticated()) {
+            const user = await User.findOne({_id: req.user.id.trim()})
             try {
                 res.render('users/user_profile', {
                     title: "Account Details",
+                    userId: user.id
+                })
+            } catch (err) {
+                next(err)
+            }
+        } else {
+            req.flash('error', "Must be logged in to access profile")
+            res.redirect('/users/login')
+        }
+    },
+    save: async (req, res, next) => {
+        if (req.isAuthenticated()) {
+            try {
+                let user = await update(req.body.id, req.body.firstName, req.body.lastName, req.body.email)
+                req.flash('success', 'You have successfully updated your account details')
+                req.login(user, function(err){
+                    if(err){
+                        return next(err)
+                    }
+                    res.redirect('/users/userProfile')
+                })
+
+
+            } catch (err) {
+                next(err)
+            }
+        }else {
+            req.flash('error', "Must be logged in to access profile")
+            res.redirect('/users/login')
+        }
+    },
+    changePassword: async (req, res, next) => {
+        if (req.isAuthenticated()) {
+            try {
+                const user = await User.findOne({_id: req.user.id.trim()})
+                user.changePassword(req.body.oldpassword, req.body.newpassword, function(err){
+                    if(err){
+                        req.flash('error', 'Password incorrect')
+
+                        return next(err)
+                    }
+                })
+                req.login(user, function(err){
+                    if(err){
+                        return next(err)
+                    }
+                    req.flash('success', 'You have successfully updated your password details')
+                    res.redirect('/users/userProfile')
+                })
+
+
+            } catch (err) {
+                next(err)
+            }
+        }else {
+            req.flash('error', "Must be logged in to access profile")
+            res.redirect('/users/login')
+        }
+    },
+    edit: async (req, res, next) => {
+        if (req.isAuthenticated()) {
+            try {
+                const user = await User.findOne({_id: req.user.id.trim()})
+                res.render('users/edit_profile', {
+                    doCreate: false,
+                    title: 'Edit Account Details',
+                    userId: user.id.trim(),
+                    userEmail: user.email,
+                    userFirstName: user.name.first,
+                    userLastName: user.name.last,
                 })
             } catch (err) {
                 next(err)
             }
         }
-        else{
-            req.flash('error', "Must be logged in to access profile")
-            res.redirect('/users/login')
-        }
     }
 }
-
 const getUserParams = body => {
     return {
         name: {
@@ -68,7 +134,11 @@ const getUserParams = body => {
         password: body.password
     }
 }
-
+update = async (id, firstName, lastName, email)=>{
+    id = id.trim()
+    let user = await User.findByIdAndUpdate({_id: id}, {$set: {'name.first': firstName, 'name.last': lastName}, email: email}, {new: true})
+    return user;
+}
 
 exports.registerValidations = [
     body('first')

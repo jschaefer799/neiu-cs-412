@@ -1,6 +1,9 @@
+<div class="container-fluid m-2">
+    {{> user_messages}}
+</div>
 <div class="container shadow-sm p-3 mt-3 mb-5 bg-light rounded">
     <label id="ratingLabel">Rating: </label>
-    <star-rating value="{{reviewRating}}" arial-labelledby="ratingLabel"></star-rating>
+    <star-rating value="{{reviewRating}}" type="readonly" arial-labelledby="ratingLabel"></star-rating>
     <div class="row row-cols-7 pl-3 pr-3 justify-content-left">
         <h3 class="text-justify">
             {{reviewTitle}}
@@ -18,29 +21,29 @@
     </div>
 </div>
 <hr/>
-    <div class="row row-cols-8 justify-content-center">
-        <a id="buttons" class="btn btn-primary m-2" data-toggle="modal" data-target="#exampleModal">Delete Review</a>
-        <a id="buttons" class="btn btn-primary m-2" href="/reviews/edit?id={{ reviewId }}">Edit Review</a>
-    </div>
-    <div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Delete Review</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Are you sure you want to delete this review?
-                </div>
-                <div class="modal-footer">
-                    <a type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</a>
-                    <a type="button" class="btn btn-primary" href="/reviews/delete?id={{ reviewId }}">Delete</a>
-                </div>
+<div class="row row-cols-8 justify-content-center">
+    <a id="buttons" class="btn btn-primary m-2" data-toggle="modal" data-target="#exampleModal">Delete Review</a>
+    <a id="buttons" class="btn btn-primary m-2" href="/reviews/edit?id={{ reviewId }}">Edit Review</a>
+</div>
+<div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Review</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-
+            <div class="modal-body">
+                Are you sure you want to delete this review?
+            </div>
+            <div class="modal-footer">
+                <a type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</a>
+                <a type="button" class="btn btn-primary" href="/reviews/delete?id={{ reviewId }}">Delete</a>
+            </div>
         </div>
+
     </div>
+</div>
 
 <img src="/assets/images/camping.jpg" class="img-fluid mt-4" alt="camping sunset">

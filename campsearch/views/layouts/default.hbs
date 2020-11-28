@@ -2,13 +2,16 @@
 <html>
   <head>
       {{>head}}
-
   </head>
   <body>
     {{>header}}
+    <div class="row row-cols-7 pt-3 mb-3 justify-content-center">
+        <h2>{{title}}</h2>
+    </div>
     {{{body}}}
-
   </body>
+  <footer>
+      {{>footer}}
+  </footer>
   {{>imports}}
-
 </html>

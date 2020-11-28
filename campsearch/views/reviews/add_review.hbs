@@ -1,3 +1,6 @@
+<div class="container-fluid m-2">
+    {{> user_messages}}
+</div><div class="container shadow-sm p-3 mt-3 mb-4 bg-light rounded">
 <form method="post" action="/reviews/save" class="center">
     <div class="container-fluid">
         <input type="hidden" name="checkCreate" value="{{#if doCreate}}create{{else}}update{{/if}}"/>
@@ -5,7 +8,6 @@
             <input type="hidden" name="reviewId" value="{{reviewId}}"/>
             <input type="hidden" name="date" value="{{date}}"/>
         </div>
-        <label id="ratingLabel">My rating</label>
         <star-rating value="0" arial-labelledby="ratingLabel"></star-rating>
         <input type="hidden" id="starRating" name="rating"/>
 
@@ -28,3 +30,4 @@
         </div>
 </form>
 <img src="/assets/images/camping.jpg" class="img-fluid mt-4" alt="camping sunset">
+</div>

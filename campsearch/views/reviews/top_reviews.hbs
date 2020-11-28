@@ -1,0 +1,14 @@
+{{#each reviewList}}
+    <div class="card mb-3">
+        <div class="card-body">
+            <star-rating value={{rating}} arial-labelledby="ratingLabel"></star-rating>
+            <h5 class="card-title">{{ title }}</h5>
+            <p class="card-text">{{body}}</p>
+        </div>
+        <div class="card-footer">
+
+            <small class="text-muted">Date Reviewed: {{date}}</small></br>
+        </div>
+    </div>
+{{/each}}
+

@@ -1,7 +1,7 @@
-<div class="row row-cols-7 pt-3 justify-content-center">
-    <h6>{{title}}</h6>
+<div class="container-fluid m-2">
+    {{> user_messages}}
 </div>
-<div class="container shadow-sm p-3 mt-3 mb-5 bg-light rounded">
+<div class="container shadow-sm p-3 mt-3 mb-2 bg-light rounded">
 
     <div class="row row-cols-7 pl-3 pr-3 justify-content-left">
         <p class="text-justify mt-1">
@@ -14,8 +14,8 @@
         </p>
     </div>
 </div>
-        <div class="row row-cols-7 pl-3 pr-3">
-            <p class="text-left">
+<div class="row row-cols-8 justify-content-center">
+    <a id="buttons" class="btn btn-primary m-3" href="/users/edit?id={{ userId }}">Edit Account Details</a>
+</div>
+<img src="/assets/images/camping.jpg" class="img-fluid mt-4" alt="camping sunset">
 
-            </p>
-        </div>

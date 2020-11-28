@@ -2,15 +2,33 @@
 <div class="container-fluid m-2">
     {{> user_messages}}
 </div>
-<div class="card bg-dark text-white">
+
+<div id="home-page-card" class="card bg-dark text-white">
 <img src="/assets/images/mountain.jpg" class="card-img" alt="camping sunset">
 
-    <div id="front-img" class="card-img-overlay text-center mt-5">
-        <div id="box" class="shadow-lg p-3 mb-5 rounded-sm">
-        <h3 class="card-title">Spend more time where it matters.</h3>
-        <h6 class="card-text">(and less time looking for a campsite)</h6>
+    <div id="front-img" class="card-img-overlay text-center ">
+        <div id="box" class="shadow-lg rounded-sm">
+        <h4 id="front-img-top-text" class="card-title">Spend more time where it matters.</h4>
+        <h6 id="front-img-second-text" class="card-subtitle">(and less time looking for a campsite)</h6>
+
+
+        <nav class="navbar justify-content-center">
+        <form class="form-inline">
+            <label class="sr-only" for="inlineFormInputGroupUsername2">Find a campsite</label>
+            <div class="input-group mt-2 mb-2 mr-sm-2" id="search-bar">
+                <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Find a campsite">
+                <div id="search-icon" class="input-group-prepend">
+                    <div id="search-icon-box" class="input-group-text align-content-center" type="submit">
+                        <i id="search-icon" data-feather="search"></i>
+                    </div>
+                </div>
+            </div>
+        </form>
+        </nav>
+        </div>
     </div>
-    </div>
+</div>
+
 </div>
 
 

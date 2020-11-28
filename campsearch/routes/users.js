@@ -14,7 +14,8 @@ router.post('/register', registerValidations,  async (req, res, next)=>{
 
 router.get('/login', async (req, res, next) =>{
     res.render('users/login',{
-        title: 'Login'
+        title: 'Login',
+        layout: 'no_title'
     })
 })
 
@@ -31,6 +32,17 @@ router.get('/userProfile', async(req, res, next)=>{
     await userController.viewUserDetails(req, res, next)
 })
 
+router.get('/edit', async (req, res, next)=>{
+    await userController.edit(req,res,next)
+})
+
+router.post('/save', async(req, res, next)=>{
+    await userController.save(req, res, next)
+})
+
+router.post('/changePassword', async(req, res, next)=>{
+    await userController.changePassword(req, res, next)
+})
 
 
 

@@ -5,6 +5,10 @@
 </head>
 <body>
 {{>header}}
+    <div class="row row-cols-7 pt-3 mb-3 justify-content-center">
+        <h2>{{title}}</h2>
+    </div>
+
 {{{body}}}
 
 </body>
@@ -13,12 +17,11 @@
     $(window).bind('load', function() {
         document.querySelector('star-rating').onchange = (e) => {
             document.getElementById('starRating').value = e.target.value
-            alert(document.getElementById('starRating').value)
-            console.log(`New rating is ${e.target.value}`)
         }
-
 
     })
 </script>
-
+<footer>
+    {{>footer}}
+</footer>
 </html>

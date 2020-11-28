@@ -1,3 +1,6 @@
+<div class="container-fluid m-2">
+    {{> user_messages}}
+</div>
 <form method="post" action="/reviews/save" class="center">
     <div class="container-fluid">
 
@@ -6,7 +9,7 @@
         <input type="hidden" name="date" value="{{reviewDate}}"/>
 
         <label id="ratingLabel">Rating: </label>
-        <star-rating value="0" arial-labelledby="ratingLabel"></star-rating>
+        <star-rating value="{{reviewRating}}" arial-labelledby="ratingLabel"></star-rating>
         <input type="hidden" id="starRating" name="rating"/>
 
         <div class="form-group row justify-content-center mt-4">

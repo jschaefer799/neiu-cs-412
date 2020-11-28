@@ -9,7 +9,6 @@ const connectFlash = require('connect-flash')
 const mongoose = require('mongoose')
 const passport = require('passport')
 const { User } = require('./models/user')
-
 //code for importing campsite data to MongoDB
 // const csvtojson = require("csvtojson")
 // const mongodb = require("mongodb").MongoClient
@@ -38,6 +37,7 @@ const { User } = require('./models/user')
 //           }
 //       )
 //     })
+
 mongoose.connect(process.env.DB_URL,{
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -81,7 +81,6 @@ app.use(session({
 
 }))
 app.use(connectFlash())
-
 app.use(passport.initialize())
 app.use(passport.session())
 passport.use(User.createStrategy())

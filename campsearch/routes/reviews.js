@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { reviewsController } = require('../controllers/reviews-controller')
+const { addReviewValidations, reviewsController } = require('../controllers/reviews-controller')
 
 router.get('/add', async (req, res, next) =>{
     try{
@@ -24,7 +24,7 @@ router.get('/add', async (req, res, next) =>{
     }
 })
 
-router.post('/save', async(req, res, next) =>{
+router.post('/save', addReviewValidations, async(req, res, next) =>{
     try{
         await reviewsController.save(req, res, next)
     }
@@ -97,6 +97,14 @@ router.get('/delete', async (req, res, next) =>{
         // res.redirect('/reviews/viewAll')
     }
     catch (err){
+        next(err)
+    }
+})
+router.get('/topReviews', async (req, res, next)=>{
+    try{
+        await reviewsController.topReviews(req, res, next)
+    }
+    catch(err){
         next(err)
     }
 })
