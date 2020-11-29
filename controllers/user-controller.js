@@ -80,6 +80,12 @@ exports.userController= {
     },
     changePassword: async (req, res, next) => {
         if (req.isAuthenticated()) {
+            const errors = validationResult(req)
+            if (!errors.isEmpty()) {
+                req.flash('error', errors.array().map(e => e.msg + '</br>').join(''))
+                res.redirect('/users/edit')
+            }
+        else{
             try {
                 const user = await User.findOne({_id: req.user.id.trim()})
                 user.changePassword(req.body.oldpassword, req.body.newpassword, function(err){
@@ -101,6 +107,7 @@ exports.userController= {
             } catch (err) {
                 next(err)
             }
+        }
         }else {
             req.flash('error', "Must be logged in to access profile")
             res.redirect('/users/login')
@@ -151,4 +158,12 @@ exports.registerValidations = [
         .notEmpty().withMessage('Password is required')
         .isLength({min: 8}).withMessage('Password must be at least 8 characters'),
     body('email').isEmail().normalizeEmail().withMessage('Email is invalid')
+]
+exports.changePasswordValidation = [
+    body('oldpassword')
+        .notEmpty().withMessage('Old password is required')
+        .isLength({min: 8}).withMessage('Old password must be at least 8 characters'),
+    body('newpassword')
+        .notEmpty().withMessage('New password is required')
+        .isLength({min: 8}).withMessage('New password must be at least 8 characters')
 ]

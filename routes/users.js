@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { registerValidations, userController } = require('../controllers/user-controller')
+const { registerValidations, changePasswordValidation, userController } = require('../controllers/user-controller')
 
 router.get('/register', async (req, res, next) =>{
     res.render('users/register',{
@@ -40,7 +40,7 @@ router.post('/save', async(req, res, next)=>{
     await userController.save(req, res, next)
 })
 
-router.post('/changePassword', async(req, res, next)=>{
+router.post('/changePassword', changePasswordValidation, async(req, res, next)=>{
     await userController.changePassword(req, res, next)
 })
 

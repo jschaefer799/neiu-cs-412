@@ -7,26 +7,41 @@ const {body, validationResult} = require ('express-validator')
 exports.reviewsController = {
 
     save: async (req, res, next) =>{
-
+        if(req.isAuthenticated()) {
             try {
-
                 if (req.body.checkCreate === 'create') {
+                    const errors = validationResult(req)
+                    if (!errors.isEmpty()) {
+                        req.flash('error', errors.array().map(e => e.msg + '</br>').join(''))
+                        res.redirect('/reviews/add')
+                    }
+                else{
                     let review
                     review = await create(req.body.title, req.body.date, req.body.rating, req.body.body)
                     req.user.reviews.push(review.id.trim())
                     req.user = await User.findByIdAndUpdate({_id: req.user.id.trim()}, {reviews: req.user.reviews}, {new: true})
                     req.flash('success', 'Review added successfully')
                     res.redirect(`/reviews/view?id=${review.id.trim()}`)
+                    }
                 } else {
-                    await update(req.body.id, req.body.title, req.body.date, req.body.rating, req.body.body)
-                    req.flash('success', 'Review updated successfully')
-                    res.redirect(`/reviews/view?id=${req.body.id.trim()}`)
+                    const errors = validationResult(req)
+                    if (!errors.isEmpty()) {
+                        req.flash('error', errors.array().map(e => e.msg + '</br>').join(''))
+                        res.redirect(`/reviews/view?id=${req.body.id.trim()}`)
+                    }
+                else {
+                        await updateReview(req.body.id, req.body.title, req.body.date, req.body.rating, req.body.body)
+                        req.flash('success', 'Review updated successfully')
+                        res.redirect(`/reviews/view?id=${req.body.id.trim()}`)
+                    }
                 }
-
             } catch (err) {
                 next(err)
             }
-
+        }else{
+            req.flash('error', 'Please log in to access reviews')
+            res.redirect('/users/login')
+        }
     },
     add: async (req, res, next) =>{
         if(req.isAuthenticated()) {
@@ -175,7 +190,7 @@ create = async (title, date, rating, body) => {
     review = await review.save()
     return review;
 }
-update = async (id, title, date, rating, body)=>{
+updateReview = async (id, title, date, rating, body)=>{
     id = id.trim()
     let review = await Review.findByIdAndUpdate({_id: id}, {title: title, date: date, rating: rating, body: body}, {new: true})
     return review;
@@ -187,7 +202,7 @@ exports.addReviewValidations = [
         .isLength({min: 1}).withMessage('A rating must be selected'),
     body('title')
         .notEmpty().withMessage('Review title is required')
-        .isLength({min: 2}).withMessage('Review title must be at least 2 characters'),
+        .isLength({min: 4}).withMessage('Review title must be at least 4 characters'),
     body('body')
         .notEmpty().withMessage('Review body is required')
         .isLength({min: 8}).withMessage('Review body must be at least 8 characters')

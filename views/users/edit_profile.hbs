@@ -13,7 +13,7 @@
                     <label class="col-form-label" for="firstName">First Name: </label>
                 </div>
                 <div class="col-4">
-                    <input class="form-control" type="text" name="firstName" value="{{ userFirstName }}"/><br/>
+                    <input class="form-control" type="text" name="firstName" value="{{ userFirstName }}" required/><br/>
                 </div>
             </div>
             <div class="form-group row justify-content-center mt-4">
@@ -21,7 +21,7 @@
                     <label class="col-form-label" for="lastName">Last Name: </label>
                 </div>
                 <div class="col-4">
-                    <input class="form-control" type="text" name="lastName" value="{{ userLastName }}"/><br/>
+                    <input class="form-control" type="text" name="lastName" value="{{ userLastName }}"required/><br/>
                 </div>
             </div>
             <div class="form-group row justify-content-center mt-4">
@@ -29,7 +29,7 @@
                     <label class="col-form-label" for="email">Email: </label>
                 </div>
                 <div class="col-4">
-                    <input class="form-control" type="text" name="email" value="{{ userEmail }}"/><br/>
+                    <input class="form-control" type="text" name="email" value="{{ userEmail }}" required/><br/>
                 </div>
             </div>
 
@@ -64,7 +64,7 @@
                                             <label class="col-form-label" for="oldpassword">Old Password: </label>
                                         </div>
                                         <div class="col-8">
-                                            <input class="form-control" type="password" name="oldpassword" /><br/>
+                                            <input class="form-control" type="password" name="oldpassword" required/><br/>
                                         </div>
                                     </div>
                                     <div class="form-group row justify-content-center mt-4">
@@ -72,7 +72,7 @@
                                             <label class="col-form-label" for="newpassword">New Password: </label>
                                         </div>
                                         <div class="col-8">
-                                            <input class="form-control" type="password" name="newpassword" /><br/>
+                                            <input class="form-control" type="password" name="newpassword" required/><br/>
                                         </div>
                                     </div>
                                 </div>
