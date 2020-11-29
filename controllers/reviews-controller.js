@@ -9,16 +9,15 @@ exports.reviewsController = {
     save: async (req, res, next) =>{
 
             try {
-                let review
-                if (req.body.checkCreate === 'create') {
 
+                if (req.body.checkCreate === 'create') {
+                    let review
                     review = await create(req.body.title, req.body.date, req.body.rating, req.body.body)
                     req.user.reviews.push(review.id.trim())
                     req.user = await User.findByIdAndUpdate({_id: req.user.id.trim()}, {reviews: req.user.reviews}, {new: true})
                     req.flash('success', 'Review added successfully')
                     res.redirect(`/reviews/view?id=${review.id.trim()}`)
                 } else {
-                    console.log(req.body.id + req.body.title+req.body.date+req.body.rating+req.body.body)
                     await update(req.body.id, req.body.title, req.body.date, req.body.rating, req.body.body)
                     req.flash('success', 'Review updated successfully')
                     res.redirect(`/reviews/view?id=${req.body.id.trim()}`)
