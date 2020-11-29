@@ -4,12 +4,14 @@ const { registerValidations, changePasswordValidation, userController } = requir
 
 router.get('/register', async (req, res, next) =>{
     res.render('users/register',{
-        title: 'Register'
+        title: 'Register',
+        layout: 'no_title'
     })
 })
 
 router.post('/register', registerValidations,  async (req, res, next)=>{
     await userController.create(req, res, next)
+
 })
 
 router.get('/login', async (req, res, next) =>{
