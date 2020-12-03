@@ -41,6 +41,7 @@ I did not want the design of CAMP Search to get in the way of its core objective
 quickly search for what they need and get back to spending more time outdoors or planning other more exciting aspects of their adventure - like a kayak trip!
 
 **Design Specifications**
+
 For the design of the CAMP Search website I tried to stay simple, minimalist and understated - which is along the lines of how nature speaks 
 to me. My goal was to create a clean and simple yet robustly informational website that was easy on the eyes.
 
