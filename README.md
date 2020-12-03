@@ -40,6 +40,18 @@ CAMP Search text. All stock photos were downloaded from Pixabay.
 I did not want the design of CAMP Search to get in the way of its core objective, that is to be a web application that allows camp-goers to 
 quickly search for what they need and get back to spending more time outdoors or planning other more exciting aspects of their adventure - like a kayak trip!
 
+**Design Specifications**
+For the design of the CAMP Search website I tried to stay simple, minimalist and understated - which is along the lines of how nature speaks 
+to me. My goal was to create a clean and simple yet robustly informational website that was easy on the eyes.
+
+When first starting on the website I picked out a color scheme that focused on earthy rich tones and strayed away from bright colors.
+
+The CAMP Search mountains/trees graphic in the CAMP Search logo was adopted from Pixabay, a website that hosts royalty-free stock photos and graphics for 
+commercial and non-commercial use free of attribution. I used Adobe Illustrator to change the color of the logo and to add the CAMP Search text. All stock photos were
+downloaded from Pixabay.
+
+I did not want the design of CAMP Search to get in the way of its core objective, that is to be a web application that allows camp-goers to quickly search for what they need
+and get back to spending more time outdoors or planning other more exciting aspects of their adventure - like a kayak trip!
 
 **Future Work**
 
